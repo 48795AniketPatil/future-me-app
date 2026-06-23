@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Future Me — Letter History</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo" style="text-decoration:none;color:inherit;">
+        <span class="logo-icon">✉</span>
+        <span class="logo-text">Future<strong>Me</strong></span>
+      </a>
+      <div class="header-actions">
+        <a href="index.html" class="nav-history-btn">← Back</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <span class="theme-icon" id="themeIcon">🌙</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="history-hero">
+    <div class="history-hero-inner">
+      <h1 class="history-title">📜 Letter History</h1>
+      <p class="history-subtitle">Every letter you've written — sealed and revealed.</p>
+
+      <!-- Filters & Search -->
+      <div class="history-controls">
+        <input
+          type="text"
+          id="searchInput"
+          class="history-search"
+          placeholder="Search by name or message…"
+        />
+        <div class="history-filters">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="sealed">🔒 Sealed</button>
+          <button class="filter-btn" data-filter="revealed">🔓 Revealed</button>
+        </div>
+        <select id="sortSelect" class="history-sort">
+          <option value="newest">Newest first</option>
+          <option value="oldest">Oldest first</option>
+          <option value="reveal-asc">Reveal date ↑</option>
+          <option value="reveal-desc">Reveal date ↓</option>
+        </select>
+      </div>
+
+      <!-- Stats bar -->
+      <div class="history-stats">
+        <div class="stat"><span class="stat-value" id="hTotalCount">0</span><span class="stat-label">Total</span></div>
+        <div class="stat"><span class="stat-value" id="hSealedCount">0</span><span class="stat-label">Sealed</span></div>
+        <div class="stat"><span class="stat-value" id="hRevealedCount">0</span><span class="stat-label">Revealed</span></div>
+        <div class="stat"><span class="stat-value" id="hShownCount">0</span><span class="stat-label">Shown</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <main class="history-main">
+    <div class="timeline" id="timeline"></div>
+  </main>
+
+  <!-- Reveal Modal (reused) -->
+  <div class="modal-overlay" id="revealOverlay">
+    <div class="modal reveal-modal" id="revealModal">
+      <button class="modal-close" id="revealClose">✕</button>
+      <div class="reveal-header">
+        <div class="reveal-envelope-anim" id="revealEnvAnim">✉</div>
+        <h2 id="revealTitle">A letter for you</h2>
+        <p id="revealMeta"></p>
+      </div>
+      <div class="reveal-message" id="revealMessage"></div>
+      <div class="reveal-footer">
+        <button class="btn btn-secondary" id="revealClose2">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="history.js"></script>
+</body>
+</html>

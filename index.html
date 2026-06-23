@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Future Me — Letters to Tomorrow</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">✉</span>
+        <span class="logo-text">Future<strong>Me</strong></span>
+      </div>
+      <div class="header-actions">
+        <div class="quote-ticker" id="quoteTicker"></div>
+        <a href="history.html" class="nav-history-btn">📜 History</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <span class="theme-icon" id="themeIcon">🌙</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">Write a letter<br /><em>to your future self.</em></h1>
+      <p class="hero-subtitle">Seal it today. Open it when the time comes.</p>
+      <button class="btn btn-primary" id="openFormBtn">Write Your Letter</button>
+    </div>
+    <div class="hero-visual">
+      <div class="envelope" id="heroEnvelope">
+        <div class="envelope-flap"></div>
+        <div class="envelope-body">
+          <div class="envelope-lines"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Form Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="formModal">
+      <button class="modal-close" id="modalClose">✕</button>
+      <h2 class="modal-title">Compose Your Letter</h2>
+
+      <form id="letterForm" novalidate>
+        <div class="form-group">
+          <label for="userName">Your Name</label>
+          <input type="text" id="userName" placeholder="What should we call you?" maxlength="50" required />
+          <span class="field-error" id="nameError"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="userMessage">Your Message</label>
+          <textarea id="userMessage" placeholder="Dear future me…" rows="6" maxlength="1000" required></textarea>
+          <div class="char-count"><span id="charCount">0</span> / 1000</div>
+          <span class="field-error" id="messageError"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="unlockDate">Reveal Date</label>
+          <input type="date" id="unlockDate" required />
+          <span class="field-hint">Must be at least tomorrow</span>
+          <span class="field-error" id="dateError"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="letterMood">Mood / Theme</label>
+          <select id="letterMood">
+            <option value="hopeful">🌟 Hopeful</option>
+            <option value="reflective">🌊 Reflective</option>
+            <option value="ambitious">🚀 Ambitious</option>
+            <option value="grateful">🙏 Grateful</option>
+            <option value="curious">🔍 Curious</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full">Seal &amp; Save Letter</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <section class="dashboard" id="dashboard">
+    <div class="dashboard-header">
+      <h2>Your Letters</h2>
+      <div class="dashboard-stats">
+        <div class="stat">
+          <span class="stat-value" id="totalCount">0</span>
+          <span class="stat-label">Total</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="lockedCount">0</span>
+          <span class="stat-label">Sealed</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="unlockedCount">0</span>
+          <span class="stat-label">Revealed</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="letters-grid" id="lettersGrid">
+      <div class="empty-state" id="emptyState">
+        <div class="empty-icon">📭</div>
+        <p>No letters yet. Write one to get started.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reveal Modal -->
+  <div class="modal-overlay" id="revealOverlay">
+    <div class="modal reveal-modal" id="revealModal">
+      <button class="modal-close" id="revealClose">✕</button>
+      <div class="reveal-header">
+        <div class="reveal-envelope-anim" id="revealEnvAnim">✉</div>
+        <h2 id="revealTitle">A letter for you</h2>
+        <p id="revealMeta"></p>
+      </div>
+      <div class="reveal-message" id="revealMessage"></div>
+      <div class="reveal-footer">
+        <button class="btn btn-secondary" id="revealClose2">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
